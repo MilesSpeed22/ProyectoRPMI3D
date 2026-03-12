@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: bbe72d17d0bde684a8606acb8bb2086f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a4f5575950519b34c954e8fd9b0389a0, type: 2}
+      objectReference: {fileID: 2100000, guid: 6286879a1a088bf45b784aece7b115e0, type: 2}
     - target: {fileID: 919132149155446097, guid: bbe72d17d0bde684a8606acb8bb2086f, type: 3}
       propertyPath: m_Name
       value: WallFBX
