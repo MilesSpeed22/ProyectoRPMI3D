@@ -25420,6 +25420,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6390316166609107454, guid: 8f9563e7b4dc83840b9c18f50dd905e0, type: 3}
   m_PrefabInstance: {fileID: 346708652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &347065602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5962839531720605236, guid: 364c425c78bad344ca4178421c1b09ed, type: 3}
+  m_PrefabInstance: {fileID: 1973859454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &347065610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347065602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa48f8733acadc41ae5eddcf083c679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  health: 0
+  maxHealth: 100
 --- !u!1001 &347844461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154555,6 +154574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8612675173063730819, guid: 364c425c78bad344ca4178421c1b09ed, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 184297811212574944, guid: 3d008ce8a36fd184f976b7ff9444aef2, type: 3}
     - target: {fileID: 8992203797720686482, guid: 364c425c78bad344ca4178421c1b09ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -154598,7 +154621,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5962839531720605236, guid: 364c425c78bad344ca4178421c1b09ed, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 347065610}
   m_SourcePrefab: {fileID: 100100000, guid: 364c425c78bad344ca4178421c1b09ed, type: 3}
 --- !u!1001 &1974146251
 PrefabInstance:

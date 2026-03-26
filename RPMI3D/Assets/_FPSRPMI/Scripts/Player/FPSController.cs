@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class FPSController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class FPSController : MonoBehaviour
     [Header("Player State Bools")]
     [SerializeField] bool isSprinting;
     [SerializeField] bool isCrouching;
+
+
     #endregion
     //Variables de referencia privadas
     Rigidbody rb;
@@ -90,6 +93,8 @@ public class FPSController : MonoBehaviour
         //Aplicar la fuerza de movimiento/aceleracion
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
     }
+
+
 
     void Jump()
     {
