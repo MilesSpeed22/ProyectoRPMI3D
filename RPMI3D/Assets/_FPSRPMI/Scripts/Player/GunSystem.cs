@@ -6,55 +6,54 @@ public class GunSystem : MonoBehaviour
 {
     #region General Variables
     [Header("General References")]
-    [SerializeField] Camera fpsCam; //Referencia si disparamos desde el centro de la camara
-    [SerializeField] Transform shootPoint; //Referencia si queremos disparar desde la punta del cañon
-    [SerializeField] LayerMask impactLayer; //Capa con la que el Raycast interactua
-    RaycastHit hit; //Almacen de la informacion de los objetos a los que el raycast puede impactar
+    [SerializeField] Camera fpsCam;
+    [SerializeField] Transform shootPoint;
+    [SerializeField] GameObject bullet;
+    [SerializeField] LayerMask impactLayer;
+    RaycastHit hit;
 
     [Header("Weapon Parameters")]
-    [SerializeField] int damage = 10; //Daño del arma por bala
-    [SerializeField] float range = 100f; //Rango al que llega el arma 
-    [SerializeField] float spread = 0f; //Radio de dispersion del arma
-    [SerializeField] float shootingCooldown = 0.2f; //Tiempo entre disparos
-    [SerializeField] float reloadTime = 1.5f; //Tiempo de recarga (Segundos)
-    [SerializeField] bool allowButtonHold = false; //Si el disparo se ejecuta por clic (False) o por mantener clic (True)
+    [SerializeField] int damage = 10;
+    [SerializeField] float range = 100f;  
+    [SerializeField] float spread = 0f; 
+    [SerializeField] float shootingCooldown = 0.2f;
+    [SerializeField] float reloadTime = 1.5f; 
+    [SerializeField] bool allowButtonHold = false; 
 
     [Header("Bullet Management")]
-    [SerializeField] int ammoSize = 30; //Cantidad maxima de balas por cargador
-    [SerializeField] int bulletsPerTap = 1; //Cantidad de balas disparadas cada vez que disparamos
-    int bulletsLeft; //Cantidad de balas en el cargador actualmente
+    [SerializeField] int ammoSize = 30;
+    [SerializeField] int bulletsPerTap = 1;
+    int bulletsLeft;
 
     [Header("Feedback references")]
-    [SerializeField] GameObject impactEffect; //Referencia al VFX de impacto de la bala
+    [SerializeField] GameObject impactEffect;
 
     [Header("Dev - Gun State Bools")]
-    [SerializeField] bool shooting; //Indica si estamos disparando
-    [SerializeField] bool canShoot; //Indica si podemos disparar en determinado momento del juego
-    [SerializeField] bool reloading; //Indica si esta recargando el arma
+    [SerializeField] bool shooting;
+    [SerializeField] bool canShoot;
+    [SerializeField] bool reloading; 
     #endregion
 
     private void Awake()
     {
-        bulletsLeft = ammoSize; //Al inicio de la partida el cargador esta lleno
+        bulletsLeft = ammoSize;
         canShoot = true;
     }
 
     void Update()
     {
-        //Condicion estricta de llamar a la rutina de disparo
         if (canShoot && shooting && !reloading && bulletsLeft > 0) StartCoroutine(ShootRoutine());
     }
 
     IEnumerator ShootRoutine()
     {
-        //Corrutina que se encarga de medir el tiempo entre disparos y la gestion del gasto de balas, llama al raycast de disparo
         canShoot = false;
-        if (!allowButtonHold) shooting = false; //Cerrar el bucle de disparo por pulsacion
+        if (!allowButtonHold) shooting = false;
         for (int i = 0; i < bulletsPerTap; i++)
         {
-            if (bulletsLeft <= 0) break; //break anula el bucle
+            if (bulletsLeft <= 0) break;
             Shoot();
-            bulletsLeft--; //resta 1 a la cantidad de balas actual
+            bulletsLeft--;
         }
 
         yield return new WaitForSeconds(shootingCooldown);
@@ -63,12 +62,11 @@ public class GunSystem : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 direction = fpsCam.transform.forward; //Se lanza un rayo hacia delante de la camara
-        //Añadir dispersion aleatoria segun el valor de spread
+        Vector3 direction = fpsCam.transform.forward;
         direction.x += Random.Range(-spread, spread);
         direction.y += Random.Range(-spread, spread);
+        //Instantiate(bullet, gameObject.transform);
 
-        //Anatomia Raycast: Physics.Raycast(Origen del rayo, direccion, almacen de la info del impacto, longitud del rayo, capa con la que impacta el rayo)
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
         {
             Debug.Log(hit.collider.name);
@@ -90,7 +88,7 @@ public class GunSystem : MonoBehaviour
         reloading = true;
         //Animacion
         yield return new WaitForSeconds(reloadTime);
-        bulletsLeft = ammoSize; //Cantidad de balas actuales se iguala a la cantidad de balas maxima
+        bulletsLeft = ammoSize;
         reloading = false;
     }
 
