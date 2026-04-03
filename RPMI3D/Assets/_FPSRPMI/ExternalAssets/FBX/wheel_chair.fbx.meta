@@ -3,7 +3,12 @@ guid: 8fd712cd208171f4eb26f8c93cb8a294
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel_chair
+    second: {fileID: 2100000, guid: 9286cb1b00a2b7b438e72636fa271cf1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
