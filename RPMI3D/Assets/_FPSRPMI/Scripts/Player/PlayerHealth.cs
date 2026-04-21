@@ -6,9 +6,12 @@ public class PlayerHealth : MonoBehaviour
     [Header("Player Health")]
     [SerializeField] float health;
     [SerializeField] float maxHealth = 100f;
+    [SerializeField] RectTransform healthFill;
+    Vector3 originalScale;
     void Start()
     {
-        health = maxHealth;  
+        health = maxHealth;
+        originalScale = healthFill.localScale;
     }
 
     void Update()
@@ -31,7 +34,15 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Laser"))
         {
             health -= 1;
-            Debug.Log("Daño");
+            health = Mathf.Clamp(health, 0, maxHealth);
+            UpdateBar();
         }
+    }
+
+    void UpdateBar()
+    {
+        float percent = health / maxHealth;
+
+        healthFill.localScale = new Vector3(originalScale.x * percent, originalScale.y, originalScale.z);
     }
 }
