@@ -65,7 +65,6 @@ public class GunSystem : MonoBehaviour
         Vector3 direction = fpsCam.transform.forward;
         direction.x += Random.Range(-spread, spread);
         direction.y += Random.Range(-spread, spread);
-        //Instantiate(bullet, gameObject.transform);
 
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
         {
