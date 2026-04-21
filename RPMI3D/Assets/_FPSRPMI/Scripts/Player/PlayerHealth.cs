@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        
+        Death();
     }
 
 
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             //Esto esta de prueba
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 
