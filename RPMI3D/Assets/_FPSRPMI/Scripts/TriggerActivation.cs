@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class TriggerActivation : MonoBehaviour
 {
-    [SerializeField] GameObject obj;
+    [SerializeField] GameObject actObj;
+    [SerializeField] GameObject deacObj;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            obj.SetActive(true);
+            actObj.SetActive(true);
+            deacObj.SetActive(false);
         }
     }
 }
