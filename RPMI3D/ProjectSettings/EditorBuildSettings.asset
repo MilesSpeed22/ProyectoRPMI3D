@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_FPSRPMI/Scenes/SCN_MainMenu.unity
+    guid: 85fc8475a8505de4793c04923011e571
+  - enabled: 1
     path: Assets/_FPSRPMI/Scenes/LVL_MainLevel.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
