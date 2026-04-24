@@ -5,115 +5,77 @@ using UnityEngine.InputSystem;
 public class GunSystem : MonoBehaviour
 {
     #region General Variables
-    [Header("General References")]
+    [Header("General Variables")]
     [SerializeField] Camera fpsCam;
-    [SerializeField] Transform shootPoint;
-    [SerializeField] GameObject bullet;
-    [SerializeField] LayerMask impactLayer;
-    RaycastHit hit;
+    [SerializeField] RaycastHit hit;
+    [SerializeField] LayerMask interactableLayer;
+    [SerializeField] AudioSource weaponSound;
 
-    [Header("Weapon Parameters")]
-    [SerializeField] int damage = 10;
-    [SerializeField] float range = 100f;  
-    [SerializeField] float spread = 0f; 
-    [SerializeField] float shootingCooldown = 0.2f;
-    [SerializeField] float reloadTime = 1.5f; 
-    [SerializeField] bool allowButtonHold = false; 
+    [Header("Interactable Stats")]
+    public float range;
+    public float shootingCooldown;
+    public int damage;
 
-    [Header("Bullet Management")]
-    [SerializeField] int ammoSize = 30;
-    [SerializeField] int bulletsPerTap = 1;
-    int bulletsLeft;
-
-    [Header("Feedback references")]
-    [SerializeField] GameObject impactEffect;
-
-    [Header("Dev - Gun State Bools")]
+    [Header("State Bools")]
     [SerializeField] bool shooting;
     [SerializeField] bool canShoot;
-    [SerializeField] bool reloading; 
+
+    [Header("Feedback and Graphics")]
+    [SerializeField] GameObject muzzleFlash;
+    [SerializeField] bool attackIsSounding;
     #endregion
 
     private void Awake()
     {
-        bulletsLeft = ammoSize;
+        weaponSound = GetComponent<AudioSource>();
+        attackIsSounding = false;
         canShoot = true;
     }
 
-    void Update()
+    private void Update()
     {
-        if (canShoot && shooting && !reloading && bulletsLeft > 0) StartCoroutine(ShootRoutine());
+        Inputs();
     }
 
-    IEnumerator ShootRoutine()
+    void Inputs()
     {
-        canShoot = false;
-        if (!allowButtonHold) shooting = false;
-        for (int i = 0; i < bulletsPerTap; i++)
-        {
-            if (bulletsLeft <= 0) break;
-            Shoot();
-            bulletsLeft--;
-        }
-
-        yield return new WaitForSeconds(shootingCooldown);
-        canShoot = true;
+        if (canShoot && shooting) Shoot();
     }
 
     void Shoot()
     {
+        canShoot = false;
         Vector3 direction = fpsCam.transform.forward;
-        direction.x += Random.Range(-spread, spread);
-        direction.y += Random.Range(-spread, spread);
 
-        if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, impactLayer))
-        {
+        if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range, interactableLayer)) 
+        { 
             if (hit.collider.CompareTag("Enemy"))
             {
-                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-                enemyHealth.TakeDamage(damage);
-            }
-            if (hit.collider.CompareTag("Target"))
-            {
-                Target targetHealth = hit.collider.GetComponent<Target>();
-                targetHealth.TakeDamage(damage);
-                Debug.Log("Target");
+                EnemyHealth enemyScript = hit.collider.GetComponent<EnemyHealth>();
+                enemyScript.TakeDamage(damage);
             }
         }
+        if(!IsInvoking(nameof(ResetShoot)) && !canShoot)
+        {
+            Invoke(nameof(ResetShoot), shootingCooldown);
+        } 
     }
 
-    void Reload()
+    void ResetShoot()
     {
-        if (bulletsLeft < ammoSize && !reloading) StartCoroutine(ReloadRoutine());
+        canShoot = true;
     }
-
-    IEnumerator ReloadRoutine()
-    {
-        reloading = true;
-        //Animacion
-        yield return new WaitForSeconds(reloadTime);
-        bulletsLeft = ammoSize;
-        reloading = false;
-    }
-
-    #region Input methods
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (allowButtonHold)
+        if (context.started)
         {
-            shooting = context.ReadValueAsButton(); //Detecta constantemente si el boton de disparo esya apretado
+            shooting = true;
         }
-        else
+        if (context.canceled)
         {
-            if (context.performed) shooting = true; //shooting solo es verdadero por pulsacion
+            shooting = false;
         }
     }
-
-    public void OnReload(InputAction.CallbackContext context)
-    {
-        if (context.performed) Reload();
-    }
-
-    #endregion
 }
+
