@@ -14,10 +14,11 @@ public class EnemyHealth : MonoBehaviour
     GameObject model;
     MeshRenderer modelRend;
 
+    [SerializeField] TargetManager targetManager;
 
     private void Start()
     {
-        model = GameObject.Find("Body");
+        model = GameObject.Find("Body").gameObject;
         modelRend = model.GetComponent<MeshRenderer>();
         health = maxHealth;
     }
@@ -31,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+            targetManager.TargetElimination();
             gameObject.SetActive(false);
         }
     }
