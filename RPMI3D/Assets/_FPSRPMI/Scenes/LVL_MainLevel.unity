@@ -70821,6 +70821,79 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1001 &1339121070
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30.200344
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 30.200344
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 30.200344
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.74
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.421
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.344
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6179107
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6179107
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.34378254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.34378254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -58.18
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a3cb9fb63a10dc4a96837b76793544d, type: 2}
+    - target: {fileID: 919132149155446097, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
+      propertyPath: m_Name
+      value: Radioactive Barrel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 790716f958027bb43a9ffce39bc59432, type: 3}
 --- !u!1001 &1339136004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122857,3 +122930,4 @@ SceneRoots:
   - {fileID: 1719045812700782647}
   - {fileID: 1065401474}
   - {fileID: 7243476412534121947}
+  - {fileID: 1339121070}
