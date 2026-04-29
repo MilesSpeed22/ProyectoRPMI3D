@@ -98,7 +98,11 @@ public class FPSController : MonoBehaviour
 
     void Jump()
     {
-        if (isGrounded) rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        if (isGrounded)
+        {
+            AudioManager.Instance.PlaySFX(0);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     #region Input Methods

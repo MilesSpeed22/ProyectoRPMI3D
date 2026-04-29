@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class DoorOpening : MonoBehaviour
+public class DoorOpening2 : MonoBehaviour
 {
     [SerializeField] GameObject door;
-    [SerializeField] float openAngle = 90f;
+    [SerializeField] float openAngle = -90f;
     [SerializeField] float speed = 5f;
     [SerializeField] float waitTime = 2f;
     
