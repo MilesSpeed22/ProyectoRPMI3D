@@ -10,8 +10,8 @@ public class FPSController : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float sprintSpeed = 8f;
     [SerializeField] float crouchSpeed = 3f;
-    [SerializeField] float maxForce = 1f; //Fuerza maxima de aceleracion
-    [SerializeField] float sensitivity = 0.1f; //Camara sensibilidad
+    [SerializeField] float maxForce = 1f;
+    [SerializeField] float sensitivity = 0.1f;
 
     [Header("Jump & GroundCheck")]
     [SerializeField] float jumpForce = 5f;
@@ -27,11 +27,11 @@ public class FPSController : MonoBehaviour
 
 
     #endregion
-    //Variables de referencia privadas
+
     Rigidbody rb;
     Animator anim;
 
-    //Variables para el input
+
     Vector2 moveInput;
     Vector2 lookInput;
     float lookRotation;
@@ -43,17 +43,15 @@ public class FPSController : MonoBehaviour
     }
     void Start()
     {
-        //Bloquear el cursor del raton
-        Cursor.lockState = CursorLockMode.Locked; //Mueve el cursor al centro y lo deja ahi
-        Cursor.visible = false; //Oculta el cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
     {
-        //Groundcheck
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
-        //Dibujar un rayo ficticio en escena para determinar la orientacion de la camara
-        Debug.DrawRay(camHolder.transform.position, camHolder.transform.forward * 100f, Color.red);
+
 
     }
 
@@ -68,9 +66,9 @@ public class FPSController : MonoBehaviour
 
     void CameraLook()
     {
-        //Rotacion horizontal del cuerpo del personaje
+
         transform.Rotate(Vector3.up * lookInput.x * sensitivity);
-        //Rotacion vertical (la lleva la camara)
+
         lookRotation += (-lookInput.y * sensitivity);
         lookRotation = Mathf.Clamp(lookRotation, -90, 90);
         camHolder.transform.localEulerAngles = new Vector3(lookRotation, 0f, 0f);
@@ -78,19 +76,16 @@ public class FPSController : MonoBehaviour
 
     void Movement()
     {
-        Vector3 currentVelocity = rb.linearVelocity; //Calcular la velocidad actual del RigidBody constantemente
-        Vector3 targetVelocity = new Vector3(moveInput.x, 0f, moveInput.y); //Velocidad a alcanzar que es igual a la direccion que pulsamos
-        targetVelocity *= isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : speed); //Parentesis para que le de prioridad al crouch
+        Vector3 currentVelocity = rb.linearVelocity;
+        Vector3 targetVelocity = new Vector3(moveInput.x, 0f, moveInput.y);
+        targetVelocity *= isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : speed);
         
-        //Convertit direccion global en local
         targetVelocity = transform.TransformDirection(targetVelocity);
 
-        //Calcular el cambio de velocidad(Aceleracion)
         Vector3 velocityChange = (targetVelocity - currentVelocity);
         velocityChange = new Vector3(velocityChange.x, 0f, velocityChange.z);
         velocityChange = Vector3.ClampMagnitude(velocityChange, maxForce);
 
-        //Aplicar la fuerza de movimiento/aceleracion
         rb.AddForce(velocityChange, ForceMode.VelocityChange);
     }
 

@@ -3,30 +3,21 @@ using UnityEngine;
 public class PointDoor : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] int startingPoint;
-    [SerializeField] Transform[] points;
+    [SerializeField] Transform startingPoint;
     [SerializeField] Transform finishingPoint;
-    private int i;
-    void Start()
-    {
-        transform.position = points[startingPoint].position;
-    }
+    bool isActive = false;
 
-    void Update()
+    private void Start()
     {
-        if (Vector3.Distance(transform.position, points[i].position) < 0.02)
-        {
-            i++;
-            if (i >= points.Length)
-            {
-                enabled = false;
-            }
-        }
-        transform.position = Vector3.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
+        transform.position = startingPoint.transform.position;
+    }
+    private void Update()
+    {
+        if (isActive) transform.position = Vector3.MoveTowards(transform.position, finishingPoint.transform.position, speed * Time.deltaTime);
     }
 
     public void Active()
     {
-        transform.position = Vector3.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
+        isActive = true;
     }
 }

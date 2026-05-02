@@ -53,9 +53,10 @@ public class GunSystem : MonoBehaviour
             {
                 TargetHealth enemyScript = hit.collider.GetComponent<TargetHealth>();
                 enemyScript.TakeDamage(damage);
+
             }
         }
-        if(!IsInvoking(nameof(ResetShoot)) && !canShoot)
+        if (!IsInvoking(nameof(ResetShoot)) && !canShoot)
         {
             Invoke(nameof(ResetShoot), shootingCooldown);
         } 

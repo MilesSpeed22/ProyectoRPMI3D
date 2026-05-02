@@ -5,17 +5,15 @@ public class TargetManagerHallway : MonoBehaviour
 {
     public int targetsLeft;
     int targetsToShoot = 0;
-    public GameObject objectToAdd;
+    PointDoor pointDoorScript;
 
-    [Header("UI")]
-    [SerializeField] TextMeshProUGUI targetsLeftUI;
     public void TargetElimination()
     {
         targetsToShoot++;
 
         if (targetsToShoot >= targetsLeft)
         {
-            objectToAdd.SetActive(false);
+            pointDoorScript.Active();
         }
     }
 }
