@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class TargetHealth : MonoBehaviour
 {
     [Header("Health System Configuration")]
     [SerializeField] float health;
     [SerializeField] float maxHealth;
 
     [Header("Feedback config")]
-    [SerializeField] Material damagedMat; //Material de feedback de daño
-    [SerializeField] MeshRenderer enemyRend; //Renderer del modelo
+    [SerializeField] Material damagedMat;
+    [SerializeField] MeshRenderer enemyRend;
     [SerializeField] GameObject deathVfx;
-    Material baseMat; //MAterial base del modelo
+    Material baseMat;
     GameObject model;
     MeshRenderer modelRend;
 

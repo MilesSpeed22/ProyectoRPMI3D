@@ -51,7 +51,7 @@ public class GunSystem : MonoBehaviour
         { 
             if (hit.collider.CompareTag("Enemy"))
             {
-                EnemyHealth enemyScript = hit.collider.GetComponent<EnemyHealth>();
+                TargetHealth enemyScript = hit.collider.GetComponent<TargetHealth>();
                 enemyScript.TakeDamage(damage);
             }
         }
@@ -70,10 +70,12 @@ public class GunSystem : MonoBehaviour
     {
         if (context.started)
         {
+            muzzleFlash.SetActive(true);
             shooting = true;
         }
         if (context.canceled)
         {
+            muzzleFlash.SetActive(false);
             shooting = false;
         }
     }
