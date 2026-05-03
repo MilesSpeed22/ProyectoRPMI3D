@@ -7,6 +7,7 @@ public class TriggerHallway : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(6);
             pointDoor.Active();
         }
     }

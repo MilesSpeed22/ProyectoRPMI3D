@@ -14,13 +14,4 @@ public class TriggerActivation : MonoBehaviour
 
         }
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        AudioManager.Instance.PlayMusic(4);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        AudioManager.Instance.PlayMusic(1);
-    }
 }

@@ -22,13 +22,11 @@ public class GunSystem : MonoBehaviour
 
     [Header("Feedback and Graphics")]
     [SerializeField] GameObject muzzleFlash;
-    [SerializeField] bool attackIsSounding;
     #endregion
 
     private void Awake()
     {
         weaponSound = GetComponent<AudioSource>();
-        attackIsSounding = false;
         canShoot = true;
     }
 
@@ -44,6 +42,7 @@ public class GunSystem : MonoBehaviour
 
     void Shoot()
     {
+        AudioManager.Instance.PlaySFX(3);
         canShoot = false;
         Vector3 direction = fpsCam.transform.forward;
 

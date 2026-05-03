@@ -130,7 +130,7 @@ public class FPSController : MonoBehaviour
     {
         if (context.performed && !isCrouching)
         {
-            AudioManager.Instance.PlaySFX(2);
+            AudioManager.Instance.PlaySFX(1);
             isSprinting = true;
         }
         if (context.canceled) isSprinting = false;

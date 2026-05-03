@@ -24,16 +24,17 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            //Esto esta de prueba
             SceneManager.LoadScene(1);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Laser"))
         {
-            health -= 1;
+            AudioManager.Instance.PlaySFX(5);
+            health -= 10;
             health = Mathf.Clamp(health, 0, maxHealth);
             UpdateBar();
         }

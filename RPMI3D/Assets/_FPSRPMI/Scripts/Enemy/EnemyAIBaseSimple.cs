@@ -26,6 +26,9 @@ public class EnemyAIBaseSimple : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(5);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene(3);
         }
     }

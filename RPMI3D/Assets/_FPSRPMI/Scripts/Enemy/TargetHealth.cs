@@ -39,6 +39,7 @@ public class TargetHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        AudioManager.Instance.PlaySFX(4);
         health -= damage;
     }
 }

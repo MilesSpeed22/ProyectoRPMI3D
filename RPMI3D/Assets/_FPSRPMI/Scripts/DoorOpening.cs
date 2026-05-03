@@ -39,12 +39,14 @@ public class DoorOpening : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(7);
             isOpening = true;
         }
     }
 
     IEnumerator DoorClosing()
     {
+        AudioManager.Instance.PlaySFX(8);
         yield return new WaitForSeconds(waitTime);
         isClosing = true;
     }
