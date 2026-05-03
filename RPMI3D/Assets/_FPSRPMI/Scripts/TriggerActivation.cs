@@ -11,12 +11,16 @@ public class TriggerActivation : MonoBehaviour
         {
             actObj.SetActive(true);
             deacObj.SetActive(false);
-            enemyDeac.SetActive(false);
+
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        AudioManager.Instance.PlayMusic(4);
+    }
     private void OnTriggerExit(Collider other)
     {
-        enemyDeac.SetActive(true);
+        AudioManager.Instance.PlayMusic(1);
     }
 }

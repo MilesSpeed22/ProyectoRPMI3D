@@ -119,7 +119,8 @@ public class FPSController : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.performed)
-        { 
+        {
+            AudioManager.Instance.PlaySFX(2);
             isCrouching = !isCrouching;
             anim.SetBool("isCrouching", isCrouching);
         }
@@ -127,7 +128,11 @@ public class FPSController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.performed && !isCrouching) isSprinting = true;
+        if (context.performed && !isCrouching)
+        {
+            AudioManager.Instance.PlaySFX(2);
+            isSprinting = true;
+        }
         if (context.canceled) isSprinting = false;
     }
 

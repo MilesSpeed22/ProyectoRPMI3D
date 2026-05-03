@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Respawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.transform.position = respawnPoint.transform.position;
+            SceneManager.LoadScene(1);
         }
     }
 }

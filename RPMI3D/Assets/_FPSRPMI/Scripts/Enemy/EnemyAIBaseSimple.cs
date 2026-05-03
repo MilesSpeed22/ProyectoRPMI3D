@@ -16,14 +16,16 @@ public class EnemyAIBaseSimple : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
-        transform.LookAt(target);
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0f;
+        
+        if (direction !=  Vector3.zero) transform.rotation = Quaternion.LookRotation(direction);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            //Animacion de muerte si es que al final hay
             SceneManager.LoadScene(3);
         }
     }
